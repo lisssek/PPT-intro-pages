@@ -19,7 +19,7 @@ Additional info:
 4) MainFunctions3.py are used for the translator2.html, the functions are commented to tell you what each part of the code does. 
 
 Timeline: 
-This should be done by the 27th of October however it might be pushed to the 1st of November as Donata has some other work that needs to be done asap for another project. 
-At the same time as we implement the changes, Donata will have to upgrade to the new version of the PPT (5.5), upload the old login page customisation and install SPARQLwrapper.
+This should be done by the 27th of October however it might be pushed to the 3rd&4th of November as DDW has some other work that needs to be done asap for another project. 
+At the same time as we implement the changes, DDW will have to upgrade to the new version of the PPT (5.5), upload the old login page customisation and install SPARQLwrapper.
 
 
