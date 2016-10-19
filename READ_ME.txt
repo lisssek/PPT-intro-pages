@@ -11,12 +11,14 @@ The jobs:
 7) I am sure that some of the formatting of the css needs a little bit of tweaking to make sure that for example if you make the window smaller, the left-hand side menu does not cover the main window. Or that the bottom and top panels (the black stripes at the top and bottom are always kept in their place)
 8) If you have time: div="sidebar-left" has a link to "Contact us" at the moment it point to juds.joinedupdata.org/about Can we have it point to juds.joinedupdata.org/about#contact ? I have some problems to point that to that specific place (probably should use anchor on the wordpress)
 9) At the risk of being patronising (which I don't want to be): Check that the files are compatible with the new version of the PPT (5.5 which is available for download now) and make sure that the old login page custumisation for the PPT (that is not currently implemented) is also compatible with the new PPT version on your dev server. 
+10) Simple search window is the same search window that is a built-in feature on top of: http://joinedupdata.org/Indicators.html . If you wish/have time you can plug that into the API to get all the concepts from the thesaurus repository using API calls in APIcall.txt 
 
 Additional info:
 1) All the pictures that I used are in the "static" folder
 2) The .js code is in the "static" folder. The .js code was used for the expandable lists.
 3) Main.3.py calls Flask and generates the html pages on your local host: http://127.0.0.1:5000
 4) MainFunctions3.py are used for the translator2.html, the functions are commented to tell you what each part of the code does. 
+5) All the screenshots of the pages can be found in: the "Screenshots" folder
 
 Timeline: 
 This should be done by the 27th of October however it might be pushed to the 3rd&4th of November as DDW has some other work that needs to be done asap for another project. 
