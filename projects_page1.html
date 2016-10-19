@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>JUDS Thesaurus</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+        <script type="text/javascript" src="static/js/jquery-1.4.2.min.js">
+        </script>
+        <script type="text/javascript" src="static/js/scripts.js">
+        </script>
+    </head>
+	<body>
+        </script>
+		<div id="banner">
+			<div id="vignet">
+				<div id="header-title">
+				  <h1>Joined-up Data Standards</h1>
+				  <h2 style="text-align:left; text-indent: 50px; font-size: 23px; "><a href="http://juds.joinedupdata.org" style="color:white">JUDS</a><h2>
+				</div>	  
+			</div>
+		</div>
+		<div class="container">
+				<div id="sidebar-left">
+					<h4>&nbsp;</h4> 
+						<p style="text-align:left"><a href="http://127.0.0.1:5000/"><img src={{url_for('static', filename='home-icon.png')}} width="40" height="40"></a></p>
+					<h4>Simple search</h4>
+					<div id="SearchContainer">
+						<input autocomplete="off" id="SearchAutoCompleteInput" title="search" type="text">
+					</div>
+					<h4>Advanced search</h4>
+						<p><a href="http://127.0.0.1:5000/translator">Search or translate</a></p>
+					<h4>Browse projects</h4>
+						<p><a href="http://127.0.0.1:5000/projects_page1">Indicators</a></p>
+						<p><a href="http://127.0.0.1:5000/projects_page2">Sectors</a></p>
+						<p><a href="http://127.0.0.1:5000/projects_page3">Supranational regions and &nbsp groupings</a></p>
+						<p><a href="http://127.0.0.1:5000/projects_page4">Surveys</a></p>
+					<h4>List of data standard</h4>
+						<p><a href="http://127.0.0.1:5000/data_standards_index">Alphabetical list</a></p>
+					<h4>Developer access</h4>
+						<p><a href="http://joinedupdata.org/PoolParty/sparql/Indicators">SPARQL</a></p>
+						<p><a href="http://joinedupdata.org/PoolParty/api/">API</a></p>
+					<h4><a href="http://juds.joinedupdata.org/about/">Contact us</a></h4>
+					<h4><a href="http://joinedupdata.org/PoolParty/!/auth/login">Log in</a></h4>
+					<h4>&nbsp;</h4> 
+				</div>
+		</div>
+		<div id="wrapper">	
+			<div class="box">
+				Indicators
+			</div>	
+				<h4>&nbsp;</h4> 
+				<div>
+				<p>This project hosts international monitoring data standards (indicators) such as Sustainable Developmental Goals, Millennium Developmental Goals (MDGs) or World Development Indicators (WDI).  The indicators are mapped in a machine- and human-readable format to both each other and across the projects maintained on this thesaurus such as “sectors”, “ supranational regions and grouping” and “household surveys”. The cross-mapping of standards is an ongoing process and the list of the data standards in this project will increase as our work progresses. </p>		
+				</div>			
+				<div id="listContainer">
+				<div class="listControl">
+					<a id="expandList" style="color:#933298">Expand all</a>
+					<a id="collapseList" style="color:#933298">Collapse all</a>
+				</div>
+				<h4>&nbsp;</h4> 
+					<ul id="expList">
+						<li>
+							<a href="http://joinedupdata.org/Indicators/mdg.html">MDGs</a>
+							<ul>
+								<li>
+									<a style="color:#BA0C2F" href="http://joinedupdata.org/Indicators/mdg/eradicate-extreme-poverty-and-hunger_mdg.html">MDG1</a>
+									<span> Goal 1: Eradicate extreme poverty and hunger</span>
+									<ul>
+										<li>
+											<a style="color:#BA0C2F" href="http://joinedupdata.org/Indicators/mdg/halve-the-proportion-of-people-whose-income-is-less-than-one-dollar-a-day_mdg.html">MDG 1.1 </a>											
+											<span>Target 1.A: Halve, between 1990 and 2015, the proportion of people whose income is less than one dollar a day</span>
+										<li>
+											<a style="color:#BA0C2F" href="http://joinedupdata.org/Indicators/mdg/achieve-full-and-productive-employment-and-decent-work-for-al_mdg.html">MDG 1.2 </a>										
+											<span>Target 1.B: Achieve full and productive employment and decent work for all, including women and young people</span>												
+										</li>
+										</li>
+									</ul>
+								</li>
+								<li>
+									MDG2
+								</li>
+								<li>
+									MDG3
+									<ul>
+										<li>
+											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis ultricies arcu, quis porttitor risus placerat et. Proin quis metus diam, quis bibendum dolor. Nulla nec dapibus nunc. Quisque ac erat sit amet nisl venenatis consequat nec in nibh. Aliquam viverra vestibulum elit faucibus sollicitudin.</span>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							SDGs
+							<ul>
+								<li>
+									SDG1
+									<ul>
+										<li>
+											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis ultricies arcu, quis porttitor risus placerat et. Proin quis metus diam, quis bibendum dolor. Nulla nec dapibus nunc. Quisque ac erat sit amet nisl venenatis consequat nec in nibh. Aliquam viverra vestibulum elit faucibus sollicitudin.</span>
+										</li>
+									</ul>
+								</li>
+								<li>
+									SDG2
+								</li>
+								<li>
+									SDG3
+									<ul>
+										<li>
+											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis ultricies arcu, quis porttitor risus placerat et. Proin quis metus diam, quis bibendum dolor. Nulla nec dapibus nunc. Quisque ac erat sit amet nisl venenatis consequat nec in nibh. Aliquam viverra vestibulum elit faucibus sollicitudin.</span>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							WDIs
+							<ul>
+								<li>
+									WDI1
+									<ul>
+										<li>
+											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis ultricies arcu, quis porttitor risus placerat et. Proin quis metus diam, quis bibendum dolor. Nulla nec dapibus nunc. Quisque ac erat sit amet nisl venenatis consequat nec in nibh. Aliquam viverra vestibulum elit faucibus sollicitudin.</span>
+										</li>
+									</ul>
+								</li>
+								<li>
+									WDI2
+								</li>
+								<li>
+									WDI3
+									<ul>
+										<li>
+											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis ultricies arcu, quis porttitor risus placerat et. Proin quis metus diam, quis bibendum dolor. Nulla nec dapibus nunc. Quisque ac erat sit amet nisl venenatis consequat nec in nibh. Aliquam viverra vestibulum elit faucibus sollicitudin.</span>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+
+					</div>
+				</div>
+			</div>
+
+		</ul>		
+			<h4>&nbsp;</h4> 
+			<h4>&nbsp;</h4> 
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+			<h4>&nbsp;</h4>
+		<div class = "footer">
+			<div class="social">
+				<div class="container">
+					<div class="row">
+					  <p>
+						  <a href="http://twitter.com/joinedup_data"> <img border="0" src="/static/Twitter-circle-logo.png" width="40" height="40"></a>
+					  </p>
+					</div>
+				</div>
+				</div>
+				<div class="copyrights">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+							<p><span>© 2016 <a href="http://devinit.org"> Development Initiatives</a> + <a href="http://www.publishwhatyoufund.org"> Publish What You Fund</a> </span></p>
+							<p>Development Initiatives Poverty Research, registered in England and Wales (06368740)</p>
+							<p>Publish What You Fund, registered in England and Wales (1158362). </p>
+							<p><a href="mailto:info@joinedupdata.org">info@joinedupdata.org.</a> Twitter: <a href="https://twitter.com/joinedup_data" target="_blank">@Joinedup_Data</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>  
+
+
+
+	</body>
+</html>

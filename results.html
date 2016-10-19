@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JUDS Translator</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+	<div id="banner">
+		<div id="vignet">
+			<div id="header-title">
+			  <h1>Joined-up Data Standards</h1>
+			  <h2 style="text-align:left; text-indent: 50px; font-size: 23px; "><a href="http://juds.joinedupdata.org" style="color:white">JUDS</a><h2>
+			</div>	  
+		</div>
+	</div>
+		<div class="container">
+				<div id="sidebar-left">
+					<h4>&nbsp;</h4> 
+						<p style="text-align:left"><a href="http://127.0.0.1:5000/"><img src={{url_for('static', filename='home-icon.png')}} width="40" height="40"></a></p>
+					<h4>Simple search</h4>
+					<div id="SearchContainer">
+						<input autocomplete="off" id="SearchAutoCompleteInput" title="search" type="text">
+					</div>
+					<h4>Advanced search</h4>
+						<p><a href="http://127.0.0.1:5000/translator">Search or translate</a></p>
+					<h4>Browse projects</h4>
+						<p><a href="http://127.0.0.1:5000/projects_page1">Indicators</a></p>
+						<p><a href="http://127.0.0.1:5000/projects_page2">Sectors</a></p>
+						<p><a href="http://127.0.0.1:5000/projects_page3">Supranational regions and &nbsp groupings</a></p>
+						<p><a href="http://127.0.0.1:5000/projects_page4">Surveys</a></p>
+					<h4>List of data standard</h4>
+						<p><a href="http://127.0.0.1:5000/data_standards_index">Alphabetical list</a></p>
+					<h4>Developer access</h4>
+						<p><a href="http://joinedupdata.org/PoolParty/sparql/Indicators">SPARQL</a></p>
+						<p><a href="http://joinedupdata.org/PoolParty/api/">API</a></p>
+					<h4><a href="http://juds.joinedupdata.org/about/">Contact us</a></h4>
+					<h4><a href="http://joinedupdata.org/PoolParty/!/auth/login">Log in</a></h4>
+					<h4>&nbsp;</h4> 
+				</div>
+		</div>
+		<div id="wrapper" style="text-align: center">
+
+			<div class="box" style="background-color: #EA7600">
+			Results	
+			</div>	  
+			 <h2>&nbsp;</h2>  
+			<button class="accordion"><b>Simple search results ({{no}})</b></button>
+				<div class="panel" style="text-align:left; overflow: auto">
+					<p>&nbsp;</p> 
+					<ul style="list-style-type:none">
+							{% for a,b in Links_and_Matches%}
+									<li style="font-size: 1.2em"> <a href="{{a}}">{{b}}</a></li>
+							{% endfor %}
+					</ul>  
+				</div>
+			<p>&nbsp;</p>  
+			<button class="accordion"><b>Optional: translations ({{no2}})</b></button>
+				<div id="foo" class="panel" style="text-align:left; overflow: auto">
+					<p>&nbsp;</p> 
+					<p><ul style="list-style-type:none">
+						{% for a in trans %}
+							<li style="font-size: 1.2em"> <a href="{{a}}">{{ a }}</a></li>
+						{% endfor %}
+					</ul></p>		  
+				</div>	
+			<p>&nbsp;</p>  
+			<button class="accordion"><b>Download results RDF/XML</b></button>
+				<div id="foo" class="panel" style="text-align:center; overflow: auto">
+					<p>&nbsp;</p> 
+					<a href="{{DownloadXML}}" style="color:black; font-size: 1.2em">  <img src="/static/favicon.ico" alt="favicon" style="width:12px;height:12px;border:0"> RDF/XML </a>
+			</div>
+			<h2>&nbsp;</h2>  
+			<h2>&nbsp;</h2> 
+	</div>
+			<script>
+				var acc = document.getElementsByClassName("accordion");
+				var i;
+
+				for (i = 0; i < acc.length; i++) {
+				  acc[i].onclick = function() {
+					var active = document.querySelector(".accordion.active");
+					if (active && active != this) {
+					  active.classList.remove("active");
+					  active.nextElementSibling.classList.remove("show");
+					}
+					this.classList.toggle("active");
+					this.nextElementSibling.classList.toggle("show");
+				  }
+				}
+			</script>
+</body>
+			<h2>&nbsp;</h2>  
+			<h2>&nbsp;</h2> 
+			<h2>&nbsp;</h2>  
+			<h2>&nbsp;</h2> 
+			<h2>&nbsp;</h2>  
+			<h2>&nbsp;</h2> 
+<footer class = "footer">
+	<div class="social">
+	<div class="container">
+		<div class="row">
+		  <p>
+			  <a href="http://twitter.com/joinedup_data"> <img border="0" src="/static/Twitter-circle-logo.png" width="40" height="40"></a>
+		  </p>
+		</div>
+	</div>
+	</div>
+	<div class="copyrights">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+				<p><span>© 2016 <a href="http://devinit.org"> Development Initiatives</a> + <a href="http://www.publishwhatyoufund.org"> Publish What You Fund</a> </span></p>
+				<p>Development Initiatives Poverty Research, registered in England and Wales (06368740)</p>
+				<p>Publish What You Fund, registered in England and Wales (1158362). </p>
+				<p><a href="mailto:info@joinedupdata.org">info@joinedupdata.org.</a> Twitter: <a href="https://twitter.com/joinedup_data" target="_blank">@Joinedup_Data</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</html>	

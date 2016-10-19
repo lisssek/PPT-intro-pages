@@ -1,0 +1,13 @@
+list all the schemas in a given project (in other words all the data standards per project for example "sectors")
+http://joinedupdata.org/PoolParty/api/thesaurus/Sectors/schemes
+list all the child concepts for each schema in a project (in other words the first level of a data standard for example in project "sector", list all the top sectors for "cofog" such as "education" or "health"):
+http://joinedupdata.org/PoolParty/api/thesaurus/Sectors/childconcepts?parent=http://joinedupdata.org/Sectors/cofog
+http://joinedupdata.org/PoolParty/api/thesaurus/Sectors/childconcepts?parent=http://joinedupdata.org/Sectors/crs
+
+list all the child concepts for each schema in a project (in other words the tree of a data standard for example in project "sector", list all the tree for data standard "cofog"):
+http://joinedupdata.org/PoolParty/api/thesaurus/Sectors/subtree?uri=http://joinedupdata.org/Sectors/crs
+
+ 
+   
+
+The above will have to be repeated per each project so for "indicators", "sectors", "supranational regions and groupings" and finally "surveys"
