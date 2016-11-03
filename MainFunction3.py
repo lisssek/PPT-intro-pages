@@ -11,18 +11,18 @@ def clean_variables(source, match, term):
 		URL2=[]
 		URL3=[]
 		baseURL1=URL1.append('http://joinedupdata.org/PoolParty/sparql/')
-		sourceURL1=URL1.append('Sectors')		
+		sourceURL1=URL1.append('Sectors')
 		sourceURL1=URL1.append('')
 		sourceURL1=''.join(URL1)
 		sourceURL1=str(sourceURL1)
 		baseURL2=URL2.append('http://joinedupdata.org/PoolParty/sparql/')
-		sourceURL2=URL2.append('Surveys')		
+		sourceURL2=URL2.append('Surveys')
 		sourceURL2=URL2.append('')
 		sourceURL2=''.join(URL2)
 		sourceURL2=str(sourceURL2)
 		print sourceURL2
 		baseURL3=URL3.append('http://joinedupdata.org/PoolParty/sparql/')
-		sourceURL3=URL3.append('Indicators')		
+		sourceURL3=URL3.append('Indicators')
 		sourceURL3=URL3.append('')
 		sourceURL3=''.join(URL3)
 		sourceURL3=str(sourceURL3)
@@ -55,7 +55,7 @@ def clean_variables(source, match, term):
 			ADDterm= SPARQLQuery.append("{?Concept skos:prefLabel ?prefLabel . FILTER (regex(str(?prefLabel), '"+ term +"', 'i')) }")
 			nextline=SPARQLQuery.append("\n")
 			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-			end=SPARQLQuery.append('')					
+			end=SPARQLQuery.append('')
 		if match=='skos:exact':
 			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?prefLabel ?exactMatch')
 			nextline=SPARQLQuery.append('\n')
@@ -99,24 +99,24 @@ def clean_variables(source, match, term):
 		QUERY=''.join(SPARQLQuery)
 		QUERY=str(QUERY)
 	 	print QUERY
-	# ## run SPARQLwrapper for all projects endpoints	
-	## run search in SPARQL endpoint 1	
+	# ## run SPARQLwrapper for all projects endpoints
+	## run search in SPARQL endpoint 1
 		sparql1 = SPARQLWrapper(sourceURL1, returnFormat=XML)
 		setQuery1=sparql1.setQuery(QUERY)
 		ret10 = sparql1.query()
 		DownloadUrl=ret10.geturl()
-	## run search in SPARQL endpoint 2	
+	## run search in SPARQL endpoint 2
 		sparql2 = SPARQLWrapper(sourceURL2, returnFormat=XML)
 		setQuery2=sparql2.setQuery(QUERY)
 		ret20 = sparql2.query()
 		DownloadUrl=ret20.geturl()
-	## run search in SPARQL endpoint 3	
+	## run search in SPARQL endpoint 3
 		sparql3 = SPARQLWrapper(sourceURL3, returnFormat=XML)
 		setQuery3=sparql3.setQuery(QUERY)
 		ret30 = sparql3.query()
 		DownloadUrl=ret30.geturl()
 	# 	print url
-	# ## use url to download results with <a href=url> in XML format	
+	# ## use url to download results with <a href=url> in XML format
 		ret1 = sparql1.query()
 		sparql1.setReturnFormat(XML)
 		results1 = ret10.convert()
@@ -132,7 +132,7 @@ def clean_variables(source, match, term):
 		results3 = ret30.convert()
 		ret33=results3.toxml('utf-8')
 
-	# ## cleaning up xml results 
+	# ## cleaning up xml results
 		root1=fromstring(ret11)
 		root2=fromstring(ret22)
 		root3=fromstring(ret33)
@@ -238,7 +238,7 @@ def clean_variables(source, match, term):
 			ADDterm= SPARQLQuery.append("{?Concept skos:prefLabel ?prefLabel . FILTER (regex(str(?prefLabel), '"+ term +"', 'i')) }")
 			nextline=SPARQLQuery.append("\n")
 			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-			end=SPARQLQuery.append('')					
+			end=SPARQLQuery.append('')
 		if match=='skos:exact':
 			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?prefLabel ?exactMatch')
 			nextline=SPARQLQuery.append('\n')
@@ -282,18 +282,18 @@ def clean_variables(source, match, term):
 		QUERY=''.join(SPARQLQuery)
 		QUERY=str(QUERY)
 	# 	print QUERY
-	# ## run SPARQLwrapper	
+	# ## run SPARQLwrapper
 		sparql = SPARQLWrapper(sourceURL, returnFormat=XML)
 		setQuery=sparql.setQuery(QUERY)
 		ret = sparql.query()
 		DownloadUrl=ret.geturl()
 	# 	print url
-	# ## use url to download results with <a href=url> in XML format	
+	# ## use url to download results with <a href=url> in XML format
 		ret = sparql.query()
 		sparql.setReturnFormat(XML)
 		results = ret.convert()
 		ret2=results.toxml('utf-8')
-	# ## cleaning up xml results 
+	# ## cleaning up xml results
 		root=fromstring(ret2)
 		ret3=[]
 		results_clean=[]
@@ -319,21 +319,21 @@ def clean_variables(source, match, term):
 					ret3.append('Narrower match: ' + matchURI)
 				if name=='prefLabel':
 					prefLabel=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
-	#				ret3.append('Original concept name:' + prefLabel)	
+	#				ret3.append('Original concept name:' + prefLabel)
 	# 	results_clean_1 = ret3
 	# 	ahref_links_for_results=[]
 	# 	for i in results_clean_1:
 	# 		if i not in results_clean:
 	#  			e=i.split('uri:')
-	# 			results_clean.append(i)	
+	# 			results_clean.append(i)
 		results_clean_1 = ret3
 		for i in results_clean_1:
 		   if i not in results_clean:
 			   results_clean.append(i)
-	
+
 	return  results_clean, DownloadUrl
-	
-def translations(results_clean, source, starting_classification, destination_classification):	
+
+def translations(results_clean, source, starting_classification, destination_classification):
 	translations=[]
 	for line in results_clean:
 		if starting_classification !='er' or destination_classification !='er':
@@ -368,7 +368,7 @@ def translations(results_clean, source, starting_classification, destination_cla
 		   if i not in translations_final:
 			  translations_final.append(i)
 	return translations_final
-	
+
 def clean_variables2(source, match, code):
 	URL=[]
 	baseURL=URL.append('http://joinedupdata.org/PoolParty/sparql/')
@@ -407,7 +407,7 @@ def clean_variables2(source, match, code):
 		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
 		nextline=SPARQLQuery.append('\n')
 		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')					
+		end=SPARQLQuery.append('')
 	if match=='skos:exact':
 		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?exactMatch ?notation2')
 		nextline=SPARQLQuery.append('\n')
@@ -455,7 +455,7 @@ def clean_variables2(source, match, code):
 		SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
 		nextline=SPARQLQuery.append('\n')
 		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')	
+		end=SPARQLQuery.append('')
 	QUERY=''.join(SPARQLQuery)
 	QUERY=str(QUERY)
 # 	print QUERY
@@ -466,13 +466,13 @@ def clean_variables2(source, match, code):
 ## 	DownloadUrl=()
  	DownloadUrl=ret.geturl()
 # # # 	print url
-# # # ## use url to download results with <a href=url> in XML format	
+# # # ## use url to download results with <a href=url> in XML format
 	ret = sparql.query()
 	sparql.setReturnFormat(XML)
 	results = ret.convert()
 	ret2=results.toxml('utf-8')
 #  	print ret2
-# # # ## cleaning up xml results 
+# # # ## cleaning up xml results
  	root=fromstring(ret2)
  	ret3=[]
  	results_clean=[]
@@ -503,15 +503,15 @@ def clean_variables2(source, match, code):
 				ret3.append('Original code: ' + conceptNotation)
 			if name=='notation2':
 				conceptNotation2=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
-				ret3.append('Translated code: ' + conceptNotation2)			
+				ret3.append('Translated code: ' + conceptNotation2)
 	results_clean_1 = ret3
 	for i in results_clean_1:
 	   if i not in results_clean:
 		   results_clean.append(i)
-		  
+
 	return  results_clean, DownloadUrl
-	
-def translations2(results_clean, source, starting_classification, destination_classification):	
+
+def translations2(results_clean, source, starting_classification, destination_classification):
 
 	translations=[]
  	notations=[]
@@ -537,7 +537,7 @@ def translations2(results_clean, source, starting_classification, destination_cl
 							translations.append(uri)
 					prevLine=line.split(':')
  			if prevLine[0]=='Original search term' and a[0]=='Exact match' or a[0]=='Closer match' or a[0]=='Broader match' or a[0]=='Narrower match':
-   				uri=a[1]+':'+a[2] 				
+   				uri=a[1]+':'+a[2]
   				if b[3]=='Surveys':
  					c=b[4]
  					c=c.split('_')
@@ -550,14 +550,14 @@ def translations2(results_clean, source, starting_classification, destination_cl
  				else:
  					if b[3]==source:
  						if destination_classification==b[4]:
- 							translations.append(uri)	
+ 							translations.append(uri)
 							prevLine=line.split(':')
 
 			if a[0]=='Original code' and prevLine[0]=='Exact match' or prevLine[0]=='Closer match' or prevLine[0]=='Broader match' or prevLine[0]=='Narrower match':
 				notation=a[1]
 				translations.append(notation)
 				prevLine=line.split(':')
-				
+
 			if a[0]=='Translated code' and prevLine[0]=='Original code':
 				print line
 				notation=a[1]
