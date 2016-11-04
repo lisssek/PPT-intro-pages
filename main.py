@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template, request, flash
-from MainFunction3 import clean_variables, translations, clean_variables2, translations2
+from mainFunction import clean_variables, translations, clean_variables2, translations2
 from wtforms import Form, BooleanField, TextField, validators
 from flask_cors import CORS, cross_origin
 from flask import jsonify
@@ -8,57 +8,6 @@ from flask import jsonify
 app = Flask(__name__)
 CORS(app)
 app.secret_key = 'some_secret'
-
-
-@app.route("/hello")
-def helloWorld():
-    return "Hello, cross-origin-world!"
-
-
-@app.route("/post", methods=['POST'])
-def postTest():
-    results = []
-    if request.method == 'POST':
-        term = request.form['term']
-        results.append(term)
-    return jsonify(results)
-
-
-@app.route('/')
-def index():
-    return render_template("homepage.html")
-
-
-@app.route('/projects_page1')
-def projects_page_1():
-    return render_template("projects_page1.html", methods=['GET', 'POST'])
-
-
-@app.route('/projects_page2')
-def projects_page_2():
-    return render_template("projects_page2.html", methods=['GET', 'POST'])
-
-
-@app.route('/projects_page3')
-def projects_page_3():
-    return render_template("projects_page3.html", methods=['GET', 'POST'])
-
-
-@app.route('/projects_page4')
-def projects_page_4():
-    return render_template("projects_page4.html", methods=['GET', 'POST'])
-
-
-@app.route('/data_standards_index')
-def data_standards_index():
-    return render_template(
-        "data_standards_index.html", methods=[
-            'GET', 'POST'])
-
-
-@app.route('/translator')
-def template_index():
-    return render_template("translator2.html")
 
 
 @app.route('/translator', methods=['POST'])
