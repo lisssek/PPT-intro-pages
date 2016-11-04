@@ -11,12 +11,12 @@
 			<div id="header-title">
 			  <h1>Joined-up Data Standards</h1>
 			  <h2 style="text-align:left; text-indent: 50px; font-size: 23px; "><a href="http://juds.joinedupdata.org" style="color:white">JUDS</a><h2>
-			</div>	  
+			</div>
 		</div>
 	</div>
 		<div class="container">
 				<div id="sidebar-left">
-					<h4>&nbsp;</h4> 
+					<h4>&nbsp;</h4>
 						<p style="text-align:left"><a href="http://127.0.0.1:5000/"><img src={{url_for('static', filename='home-icon.png')}} width="40" height="40"></a></p>
 					<h4>Simple search</h4>
 					<div id="SearchContainer">
@@ -36,43 +36,42 @@
 						<p><a href="http://joinedupdata.org/PoolParty/api/">API</a></p>
 					<h4><a href="http://juds.joinedupdata.org/about/">Contact us</a></h4>
 					<h4><a href="http://joinedupdata.org/PoolParty/!/auth/login">Log in</a></h4>
-					<h4>&nbsp;</h4> 
+					<h4>&nbsp;</h4>
 				</div>
 		</div>
 		<div id="wrapper" style="text-align: center">
-
 			<div class="box" style="background-color: #EA7600">
-			Results	
-			</div>	  
-			 <h2>&nbsp;</h2>  
+			Results
+			</div>
+			 <h2>&nbsp;</h2>
 			<button class="accordion"><b>Simple search results ({{no}})</b></button>
 				<div class="panel" style="text-align:left; overflow: auto">
-					<p>&nbsp;</p> 
+					<p>&nbsp;</p>
 					<ul style="list-style-type:none">
 							{% for a,b in Links_and_Matches%}
 									<li style="font-size: 1.2em"> <a href="{{a}}">{{b}}</a></li>
 							{% endfor %}
-					</ul>  
+					</ul>
 				</div>
-			<p>&nbsp;</p>  
+			<p>&nbsp;</p>
 			<button class="accordion"><b>Optional: translations ({{no2}})</b></button>
 				<div id="foo" class="panel" style="text-align:left; overflow: auto">
-					<p>&nbsp;</p> 
+					<p>&nbsp;</p>
 					<p><ul style="list-style-type:none">
 						{% for a in trans %}
 							<li style="font-size: 1.2em"> <a href="{{a}}">{{ a }}</a></li>
 						{% endfor %}
-					</ul></p>		  
-				</div>	
-			<p>&nbsp;</p>  
+					</ul></p>
+				</div>
+			<p>&nbsp;</p>
 			<button class="accordion"><b>Download results RDF/XML</b></button>
 				<div id="foo" class="panel" style="text-align:center; overflow: auto">
-					<p>&nbsp;</p> 
+					<p>&nbsp;</p>
 					<a href="{{DownloadXML}}" style="color:black; font-size: 1.2em">  <img src="/static/favicon.ico" alt="favicon" style="width:12px;height:12px;border:0"> RDF/XML </a>
 			</div>
-			<h2>&nbsp;</h2>  
-			<h2>&nbsp;</h2> 
-	</div>
+			<h2>&nbsp;</h2>
+			<h2>&nbsp;</h2>
+		</div>
 			<script>
 				var acc = document.getElementsByClassName("accordion");
 				var i;
@@ -90,12 +89,12 @@
 				}
 			</script>
 </body>
-			<h2>&nbsp;</h2>  
-			<h2>&nbsp;</h2> 
-			<h2>&nbsp;</h2>  
-			<h2>&nbsp;</h2> 
-			<h2>&nbsp;</h2>  
-			<h2>&nbsp;</h2> 
+			<h2>&nbsp;</h2>
+			<h2>&nbsp;</h2>
+			<h2>&nbsp;</h2>
+			<h2>&nbsp;</h2>
+			<h2>&nbsp;</h2>
+			<h2>&nbsp;</h2>
 <footer class = "footer">
 	<div class="social">
 	<div class="container">
@@ -119,4 +118,4 @@
 		</div>
 	</div>
 </footer>
-</html>	
+</html>
