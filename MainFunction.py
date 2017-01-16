@@ -98,7 +98,6 @@ def clean_variables(source, match, term):
 			end=SPARQLQuery.append('')
 		QUERY=''.join(SPARQLQuery)
 		QUERY=str(QUERY)
-	 	print QUERY
 	# ## run SPARQLwrapper for all projects endpoints	
 	## run search in SPARQL endpoint 1	
 		sparql1 = SPARQLWrapper(sourceURL1, returnFormat=XML)
@@ -115,7 +114,6 @@ def clean_variables(source, match, term):
 		setQuery3=sparql3.setQuery(QUERY)
 		ret30 = sparql3.query()
 		DownloadUrl=ret30.geturl()
-	# 	print url
 	# ## use url to download results with <a href=url> in XML format	
 		ret1 = sparql1.query()
 		sparql1.setReturnFormat(XML)
@@ -281,13 +279,11 @@ def clean_variables(source, match, term):
 			end=SPARQLQuery.append('')
 		QUERY=''.join(SPARQLQuery)
 		QUERY=str(QUERY)
-	# 	print QUERY
 	# ## run SPARQLwrapper	
 		sparql = SPARQLWrapper(sourceURL, returnFormat=XML)
 		setQuery=sparql.setQuery(QUERY)
 		ret = sparql.query()
 		DownloadUrl=ret.geturl()
-	# 	print url
 	# ## use url to download results with <a href=url> in XML format	
 		ret = sparql.query()
 		sparql.setReturnFormat(XML)
@@ -300,14 +296,12 @@ def clean_variables(source, match, term):
 		for result in root.iter('{http://www.w3.org/2005/sparql-results#}result'):
 			for bindings in root.iter('{http://www.w3.org/2005/sparql-results#}binding'):
 				name=bindings.get('name')
-	#			print name
 				if name=='Concept':
 					conceptURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
 					ret3.append('Original search term: ' + conceptURI)
 				if name=='exactMatch':
 					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
 					ret3.append('Exact match: ' + matchURI)
-		#				print matchURI
 				if name=='closeMatch':
 					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
 					ret3.append('Closer match: ' + matchURI)
@@ -319,13 +313,7 @@ def clean_variables(source, match, term):
 					ret3.append('Narrower match: ' + matchURI)
 				if name=='prefLabel':
 					prefLabel=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
-	#				ret3.append('Original concept name:' + prefLabel)	
-	# 	results_clean_1 = ret3
-	# 	ahref_links_for_results=[]
-	# 	for i in results_clean_1:
-	# 		if i not in results_clean:
-	#  			e=i.split('uri:')
-	# 			results_clean.append(i)	
+					ret3.append('Original concept name:' + prefLabel)	
 		results_clean_1 = ret3
 		for i in results_clean_1:
 		   if i not in results_clean:
@@ -349,12 +337,9 @@ def translations(results_clean, source, starting_classification, destination_cla
 				if a[0]=='Original search term: http:':
 					if starting_classification==d:
 						translations.append(bbb)
-	# 					print starting_classification
 				else:
 					if destination_classification==d:
 						translations.append(bbb)
-	# 					print d
-	# 					print destination_classification
 			else:
 				if a[0]=='Original search term: http:':
 					if a[3]==source:
