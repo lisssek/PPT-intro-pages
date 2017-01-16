@@ -370,144 +370,344 @@ def translations(results_clean, source, starting_classification, destination_cla
 	return translations_final
 	
 def clean_variables2(source, match, code):
-	URL=[]
-	baseURL=URL.append('http://joinedupdata.org/PoolParty/sparql/')
-	sourceURL=URL.append(source)
-	sourceURL=URL.append('')
-	sourceURL=''.join(URL)
-	sourceURL=str(sourceURL)
-	match=match.lower()
-#  	print match
-#  	print sourceURL
-## build SPARQL query for use in Main.py
-	SPARQLQuery=[]
-	start=SPARQLQuery.append('')
-	prefix=SPARQLQuery.append('PREFIX skos:<http://www.w3.org/2004/02/skos/core#>')
-	nextline=SPARQLQuery.append('\n')
-	if match=='any':
-		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation ?exactMatch ?closeMatch ?broadMatch ?narrowMatch')
+	if source=="er": 
+		URL4=[]
+		URL5=[]
+		URL6=[]
+		baseURL4=URL4.append('http://joinedupdata.org/PoolParty/sparql/')
+		sourceURL4=URL4.append('Sectors')
+		sourceURL4=URL4.append('')
+		sourceURL4=''.join(URL4)
+		sourceURL4=str(sourceURL4)
+		baseURL5=URL5.append('http://joinedupdata.org/PoolParty/sparql/')
+		sourceURL5=URL5.append('Surveys')
+		sourceURL5=URL5.append('')
+		sourceURL5=''.join(URL5)
+		sourceURL5=str(sourceURL5)
+		baseURL6=URL6.append('http://joinedupdata.org/PoolParty/sparql/')
+		sourceURL6=URL6.append('Indicators')
+		sourceURL6=URL6.append('')
+		sourceURL6=''.join(URL6)
+		sourceURL6=str(sourceURL6)
+	## build SPARQL query for use in Main.py
+		SPARQLQuery=[]
+		start=SPARQLQuery.append('')
+		prefix=SPARQLQuery.append('PREFIX skos:<http://www.w3.org/2004/02/skos/core#>')
 		nextline=SPARQLQuery.append('\n')
-		WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
-		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation), '"+ code +"', 'i'))}")
+		if match=='any':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation ?exactMatch ?closeMatch ?broadMatch ?narrowMatch')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation), '"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:exactMatch ?exactMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:closeMatch ?closeMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:broadMatch ?broadMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:narrowMatch ?narrowMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='er':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')					
+		if match=='skos:exact':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?exactMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:exactMatch ?exactMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='skos:close':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?closeMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:closeMatch ?closeMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='skos:narrower':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?narrowMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:narrowMatch ?narrowMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='skos:broader':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?broadMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:broadMatch ?broadMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')	
+		QUERY=''.join(SPARQLQuery)
+		QUERY=str(QUERY)
+	# ## run SPARQLwrapper for endpoint A
+		sparql5 = SPARQLWrapper(sourceURL5, returnFormat=XML)
+		setQuery5=sparql5.setQuery(QUERY)
+		ret50 = sparql5.query()
+		DownloadUrl=ret50.geturl()
+	# ## run SPARQLwrapper for endpoint B
+		sparql6 = SPARQLWrapper(sourceURL6, returnFormat=XML)
+		setQuery6=sparql6.setQuery(QUERY)
+		ret60 = sparql6.query()
+		DownloadUrl=ret60.geturl()
+	# ## run SPARQLwrapper for endpoint C
+		sparql4 = SPARQLWrapper(sourceURL4, returnFormat=XML)
+		setQuery4=sparql4.setQuery(QUERY)
+		ret40= sparql4.query()
+		DownloadUrl=ret40.geturl()
+	# # # ## use url to download results with <a href=url> in XML format	
+		ret5= sparql5.query()
+		sparql5.setReturnFormat(XML)
+		results5 = ret5.convert()
+		ret55=results5.toxml('utf-8')
+		
+		ret6= sparql6.query()
+		sparql6.setReturnFormat(XML)
+		results6 = ret6.convert()
+		ret66=results6.toxml('utf-8')
+		
+		ret4= sparql4.query()
+		sparql4.setReturnFormat(XML)
+		results4= ret4.convert()
+		ret44=results4.toxml('utf-8')
+	# # # ## cleaning up xml results 
+		root5=fromstring(ret55)
+		root6=fromstring(ret66)
+		root4=fromstring(ret44)
+		ret800=[]
+		results_clean=[]
+		for result in root5.iter('{http://www.w3.org/2005/sparql-results#}result'):
+			for bindings in root5.iter('{http://www.w3.org/2005/sparql-results#}binding'):
+				name=bindings.get('name')
+				if name=='Concept':
+					conceptURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Original search term: ' + conceptURI)
+				if name=='exactMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Exact match: ' + matchURI)
+				if name=='closeMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Closer match: ' + matchURI)
+				if name=='broadMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Broader match: ' + matchURI)
+				if name=='narrowMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Narrower match: ' + matchURI)
+				if name=='notation':
+					conceptNotation=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret800.append('Original code: ' + conceptNotation)
+				if name=='notation2':
+					conceptNotation2=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret800.append('Translated code: ' + conceptNotation2)		
+		for result in root6.iter('{http://www.w3.org/2005/sparql-results#}result'):
+			for bindings in root6.iter('{http://www.w3.org/2005/sparql-results#}binding'):
+				name=bindings.get('name')
+				if name=='Concept':
+					conceptURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Original search term: ' + conceptURI)
+				if name=='exactMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Exact match: ' + matchURI)
+				if name=='closeMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Closer match: ' + matchURI)
+				if name=='broadMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Broader match: ' + matchURI)
+				if name=='narrowMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Narrower match: ' + matchURI)
+				if name=='notation':
+					conceptNotation=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret800.append('Original code: ' + conceptNotation)
+				if name=='notation2':
+					conceptNotation2=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret800.append('Translated code: ' + conceptNotation2)	
+		for result in root4.iter('{http://www.w3.org/2005/sparql-results#}result'):
+			for bindings in root4.iter('{http://www.w3.org/2005/sparql-results#}binding'):
+				name=bindings.get('name')
+				if name=='Concept':
+					conceptURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Original search term: ' + conceptURI)
+				if name=='exactMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Exact match: ' + matchURI)
+				if name=='closeMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Closer match: ' + matchURI)
+				if name=='broadMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Broader match: ' + matchURI)
+				if name=='narrowMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret800.append('Narrower match: ' + matchURI)
+				if name=='notation':
+					conceptNotation=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret800.append('Original code: ' + conceptNotation)
+				if name=='notation2':
+					conceptNotation2=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret800.append('Translated code: ' + conceptNotation2)	
+		results_clean_1 = ret800
+		for i in results_clean_1:
+		   if i not in results_clean:
+			   results_clean.append(i)
+	else:
+		URL=[]
+		baseURL=URL.append('http://joinedupdata.org/PoolParty/sparql/')
+		sourceURL=URL.append(source)
+		sourceURL=URL.append('')
+		sourceURL=''.join(URL)
+		sourceURL=str(sourceURL)
+	## build SPARQL query for use in Main.py
+		SPARQLQuery=[]
+		start=SPARQLQuery.append('')
+		prefix=SPARQLQuery.append('PREFIX skos:<http://www.w3.org/2004/02/skos/core#>')
 		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:exactMatch ?exactMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:closeMatch ?closeMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:broadMatch ?broadMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:narrowMatch ?narrowMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')
-	if match=='er':
-		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation')
-		nextline=SPARQLQuery.append('\n')
-		WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
-		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
-		nextline=SPARQLQuery.append('\n')
-		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')					
-	if match=='skos:exact':
-		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?exactMatch ?notation2')
-		nextline=SPARQLQuery.append('\n')
-		WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
-		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?Concept skos:exactMatch ?exactMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
-		nextline=SPARQLQuery.append('\n')
-		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')
-	if match=='skos:close':
-		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?closeMatch ?notation2')
-		nextline=SPARQLQuery.append('\n')
-		WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
-		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?Concept skos:closeMatch ?closeMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
-		nextline=SPARQLQuery.append('\n')
-		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')
-	if match=='skos:narrower':
-		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?narrowMatch ?notation2')
-		nextline=SPARQLQuery.append('\n')
-		WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
-		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?Concept skos:narrowMatch ?narrowMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
-		nextline=SPARQLQuery.append('\n')
-		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')
-	if match=='skos:broader':
-		Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?broadMatch ?notation2')
-		nextline=SPARQLQuery.append('\n')
-		WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
-		SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?Concept skos:broadMatch ?broadMatch .}")
-		nextline=SPARQLQuery.append('\n')
-		SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
-		nextline=SPARQLQuery.append('\n')
-		ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
-		end=SPARQLQuery.append('')	
-	QUERY=''.join(SPARQLQuery)
-	QUERY=str(QUERY)
-# 	print QUERY
-# ## run SPARQLwrapper
-	sparql = SPARQLWrapper(sourceURL, returnFormat=XML)
-	setQuery=sparql.setQuery(QUERY)
-	ret = sparql.query()
-## 	DownloadUrl=()
- 	DownloadUrl=ret.geturl()
-# # # 	print url
-# # # ## use url to download results with <a href=url> in XML format	
-	ret = sparql.query()
-	sparql.setReturnFormat(XML)
-	results = ret.convert()
-	ret2=results.toxml('utf-8')
-#  	print ret2
-# # # ## cleaning up xml results 
- 	root=fromstring(ret2)
- 	ret3=[]
- 	results_clean=[]
-##  	DownloadUrl='blabla'
-# # 	print root
-	for result in root.iter('{http://www.w3.org/2005/sparql-results#}result'):
-		for bindings in root.iter('{http://www.w3.org/2005/sparql-results#}binding'):
-			name=bindings.get('name')
-# 			print name
-			if name=='Concept':
-				conceptURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
-				ret3.append('Original search term: ' + conceptURI)
-			if name=='exactMatch':
-				matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
-				ret3.append('Exact match: ' + matchURI)
-	#				print matchURI
-			if name=='closeMatch':
-				matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
-				ret3.append('Closer match: ' + matchURI)
-			if name=='broadMatch':
-				matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
-				ret3.append('Broader match: ' + matchURI)
-			if name=='narrowMatch':
-				matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
-				ret3.append('Narrower match: ' + matchURI)
-			if name=='notation':
-				conceptNotation=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
-				ret3.append('Original code: ' + conceptNotation)
-			if name=='notation2':
-				conceptNotation2=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
-				ret3.append('Translated code: ' + conceptNotation2)			
-	results_clean_1 = ret3
-	for i in results_clean_1:
-	   if i not in results_clean:
-		   results_clean.append(i)
+		if match=='any':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation ?exactMatch ?closeMatch ?broadMatch ?narrowMatch')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation), '"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:exactMatch ?exactMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:closeMatch ?closeMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:broadMatch ?broadMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("OPTIONAL{?Concept skos:narrowMatch ?narrowMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='er':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')					
+		if match=='skos:exact':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?exactMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:exactMatch ?exactMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='skos:close':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?closeMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:closeMatch ?closeMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='skos:narrower':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?narrowMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:narrowMatch ?narrowMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')
+		if match=='skos:broader':
+			Select=SPARQLQuery.append('SELECT DISTINCT ?Concept ?notation  ?broadMatch ?notation2')
+			nextline=SPARQLQuery.append('\n')
+			WHERE=SPARQLQuery.append("WHERE{?Concept ?x skos:Concept")
+			SKOS=SPARQLQuery.append("{?Concept skos:notation ?notation . Filter (regex(str(?notation),'"+ code +"', 'i'))}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?Concept skos:broadMatch ?broadMatch .}")
+			nextline=SPARQLQuery.append('\n')
+			SKOS=SPARQLQuery.append("{?exactMatch skos:notation ?notation2 .}")
+			nextline=SPARQLQuery.append('\n')
+			ORDER=SPARQLQuery.append("}ORDER BY ?prefLabel LIMIT 500 OFFSET 0")
+			end=SPARQLQuery.append('')	
+		QUERY=''.join(SPARQLQuery)
+		QUERY=str(QUERY)
+	# ## run SPARQLwrapper
+		sparql = SPARQLWrapper(sourceURL, returnFormat=XML)
+		setQuery=sparql.setQuery(QUERY)
+		ret = sparql.query()
+		DownloadUrl=ret.geturl()
+	# # # ## use url to download results with <a href=url> in XML format	
+		ret = sparql.query()
+		sparql.setReturnFormat(XML)
+		results = ret.convert()
+		ret2=results.toxml('utf-8')
+	# # # ## cleaning up xml results 
+		root=fromstring(ret2)
+		ret3=[]
+		results_clean=[]
+		for result in root.iter('{http://www.w3.org/2005/sparql-results#}result'):
+			for bindings in root.iter('{http://www.w3.org/2005/sparql-results#}binding'):
+				name=bindings.get('name')
+				if name=='Concept':
+					conceptURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret3.append('Original search term: ' + conceptURI)
+				if name=='exactMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret3.append('Exact match: ' + matchURI)
+				if name=='closeMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret3.append('Closer match: ' + matchURI)
+				if name=='broadMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret3.append('Broader match: ' + matchURI)
+				if name=='narrowMatch':
+					matchURI=bindings.find('{http://www.w3.org/2005/sparql-results#}uri').text
+					ret3.append('Narrower match: ' + matchURI)
+				if name=='notation':
+					conceptNotation=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret3.append('Original code: ' + conceptNotation)
+				if name=='notation2':
+					conceptNotation2=bindings.find('{http://www.w3.org/2005/sparql-results#}literal').text
+					ret3.append('Translated code: ' + conceptNotation2)			
+		results_clean_1 = ret3
+		for i in results_clean_1:
+		   if i not in results_clean:
+			   results_clean.append(i)
 		  
 	return  results_clean, DownloadUrl
 	
